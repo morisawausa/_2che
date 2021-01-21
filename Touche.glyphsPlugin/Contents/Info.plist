@@ -7,11 +7,11 @@
 	<key>CFBundleExecutable</key>
 	<string>plugin</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.occupantfonts.2che</string>
+	<string>com.occupantfonts.Touche</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>2che</string>
+	<string>Touche</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.1.3</string>
 	<key>CFBundleVersion</key>
