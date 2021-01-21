@@ -8,16 +8,15 @@ from toucheTool import ToucheTool
 
 class TouchePlugin (GeneralPlugin):
 	def settings(self):
-		self.name = "Touché"
-	
+		self.name = "2ché"
+
 	def start(self):
 		newMenuItem = NSMenuItem(self.name, self.showWindow_)
 		Glyphs.menu[EDIT_MENU].append(newMenuItem)
-	
+
 	def showWindow_(self, sender):
 		self.touche = ToucheTool()
-	
+
 	def __file__(self):
 		"""Please leave this method unchanged"""
 		return __file__
-	
