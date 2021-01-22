@@ -7,7 +7,7 @@ from vanilla import CheckBox, Group, List, ProgressSpinner, Button, TextBox, Flo
 from GlyphsApp import *
 import time, objc
 
-from builtins import chr
+# from builtins import chr
 
 class ToucheTool():
 
