@@ -2,7 +2,7 @@
 from __future__ import division, print_function, unicode_literals
 from Touche import Touche
 from Foundation import NSUserDefaults
-from vanilla import CheckBox, Group, List, ProgressSpinner, Button, TextBox, FloatingWindow
+from vanilla import CheckBox, Group, List, ProgressSpinner, Button, TextBox, FloatingWindow, Window
 #from robofab.world import CurrentFont
 from GlyphsApp import *
 import time, objc
@@ -18,7 +18,7 @@ class ToucheTool():
         if self.windowHeight < self.minWindowHeight:
             self.windowHeight = self.minWindowHeight
         self.closedWindowHeight = 100
-        self.w = FloatingWindow((180, self.windowHeight), 'Touché!', minSize=(180,340), maxSize=(250,898))
+        self.w = Window((180, self.windowHeight), 'Touché!', minSize=(180,340), maxSize=(250,898))
         self.w.bind("resize", self.windowResized_)
         self.isResizing = False
         p = 10
