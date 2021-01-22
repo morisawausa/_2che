@@ -37,12 +37,28 @@ class ToucheTool():
         self.w.options.zeroCheck = CheckBox((p, 35, w, 20), "Ignore zero-width glyphs", value=True, sizeStyle="small")
         self.w.options.progress = ProgressSpinner((w - 8, 13, 16, 16), sizeStyle="small")
 
-        # Modification(Nic)
+        # Modification(Nic): prev / next buttons
         self.w.options.prevButton = Button((w + 22, 35, 10, 10), "Prev Button", callback=self.prevPair_)
         self.w.options.prevButton.bind("uparrow", [])
 
         self.w.options.nextButton = Button((w + 22, 35, 10, 10), "Next Button", callback=self.nextPair_)
         self.w.options.nextButton.bind("downarrow", [])
+
+        # /Modification(Nic)
+
+        # Modification(Nic): prev / next buttons
+
+        self.w.options.decrementKerningHigh = Button((w + 22, 35, 10, 10), "Decrement Kerning High", callback=self.decrementKerningByHigh_)
+        self.w.options.decrementKerningHigh.bind("leftarrow", ["command"])
+
+        self.w.options.decrementKerningLow = Button((w + 22, 35, 10, 10), "Decrement Kerning Low", callback=self.decrementKerningByLow_)
+        self.w.options.decrementKerningLow.bind("leftarrow", [])
+
+        self.w.options.incrementKerningHigh = Button((w + 22, 35, 10, 10), "Increment Kerning High", callback=self.incrementKerningByHigh_)
+        self.w.options.incrementKerningHigh.bind("rightarrow", ["command"])
+
+        self.w.options.incrementKerningLow = Button((w + 22, 35, 10, 10), "Increment Kerning Low", callback=self.incrementKerningByLow_)
+        self.w.options.incrementKerningLow.bind("rightarrow", [])
 
         # /Modification(Nic)
 
@@ -65,19 +81,62 @@ class ToucheTool():
 
     # callbacks
 
-    # Modification(Nic)
+    # Modification(Nic): Incrementing and Decrementing the Pair Index in the list.
 
     def prevPair_(self, sender=None):
         currentIndices = self.w.outputList.getSelection()
-        prevIndicies = map(lambda i: max(i - 1, 0), currentIndices)
-        self.w.outputList.setSelection(prevIndicies)
+        prevIndices = map(lambda i: max(i - 1, 0), currentIndices)
+        if (len(self.w.outputList) > 0):
+            self.w.outputList.setSelection(prevIndices)
 
     def nextPair_(self, sender=None):
         currentIndices = self.w.outputList.getSelection()
         nextIndices = map(lambda i: min(i + 1, len(self.w.outputList) - 1), currentIndices)
-        self.w.outputList.setSelection(nextIndices)
+        if (len(self.w.outputList) > 0):
+            self.w.outputList.setSelection(nextIndices)
 
     # /Modification(Nic)
+
+    # Modification(Nic): Incrementing and Decrementing the Pair Index in the list.
+
+    def decrementKerningByLow_(self, sender=None):
+        print('dec by low')
+        currentIndices = self.w.outputList.getSelection()
+        currentPair = self.w.outputList[currentIndices[0]]
+        increment = Glyphs.intDefaults['GSKerningIncrementLow']
+        self.bumpKerningForPair(currentPair['left glyph'], currentPair['right glyph'], -increment)
+
+    def decrementKerningByHigh_(self, sender=None):
+        print('dec by high')
+        currentIndices = self.w.outputList.getSelection()
+        currentPair = self.w.outputList[currentIndices[0]]
+        increment = Glyphs.intDefaults['GSKerningIncrementHigh']
+        self.bumpKerningForPair(currentPair['left glyph'], currentPair['right glyph'], -increment)
+
+    def incrementKerningByLow_(self, sender=None):
+        print('inc by low')
+        currentIndices = self.w.outputList.getSelection()
+        currentPair = self.w.outputList[currentIndices[0]]
+        increment = Glyphs.intDefaults['GSKerningIncrementLow']
+        self.bumpKerningForPair(currentPair['left glyph'], currentPair['right glyph'], increment)
+
+    def incrementKerningByHigh_(self, sender=None):
+        print('inc by high')
+        currentIndices = self.w.outputList.getSelection()
+        currentPair = self.w.outputList[currentIndices[0]]
+        increment = Glyphs.intDefaults['GSKerningIncrementHigh']
+        self.bumpKerningForPair(currentPair['left glyph'], currentPair['right glyph'], increment)
+
+    # /Modification(Nic)
+
+    # Modification(Nic): Routine to increment/decrement kerning properly
+    def bumpKerningForPair(self, left, right, increment):
+        leftGlyph, rightGlyph = self.f[left], self.f[right]
+        k = self.f.kerningForPair(self.f.selectedFontMaster.id, leftGlyph.rightKerningKey, rightGlyph.leftKerningKey)
+        if k > 10000: k = 0 # Glyphs uses MAXINT to signal no kerning.
+        self.f.setKerningForPair(self.f.selectedFontMaster.id, leftGlyph.rightKerningKey, rightGlyph.leftKerningKey, k + increment)
+
+    # Modification(Nic)
 
     def checkAll_(self, sender=None):
         self.check_(useSelection=False)
