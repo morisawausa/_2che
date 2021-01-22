@@ -2,6 +2,19 @@
 
 A very light layer on top of [Nina Stoessigner's Touche tool](https://github.com/ninastoessinger/Touche). This layer adds some additional keyboard shortcuts to the tool, making it a bit easier to navigate the clashing pairs list, and apply kerning changes without needing to touch the mouse. Sorry for the silly name.
 
+Our modification changes Touche into a Windowed Plugin that retains focus while you're using it. As you click (or use arrow keys) to navigate the list of clashes, you can also kern the clashing pairs directly while the Touche window keeps focus. This allows you to seamlessly navighate the clash list while fixing clashes without needing to use the mouse.
+
+Here's a list of the keyboard shorcuts 2che provides.
+
+| action | key |
+| ------ | --- |
+| next clashing pair | `↓` |
+| previous clashing pair | `↑` |
+| increase kerning by default low increment | `→ ` |
+| decrease kerning by default low increment | `←` |
+| increase kerning by default high increment | `⌘` + `→ ` |
+| decrease kerning by default high increment | `⌘` + `←` |
+
 ## Original Notes from Nina Stoessigner and Glyphs
 
 Looking through your kerning, you try to catch them: _colliding glyph pairs_. But did you remember to check your i-diacritics against your superior numerals, ogoneks against brackets, the dcaron against the asterisk? Touché can take some guesswork out of things by listing the pairs whose black bodies touch, taking spacing and kerning into account.
