@@ -4,9 +4,9 @@
 import objc, time, traceback
 from GlyphsApp import *
 from GlyphsApp.plugins import *
-from toucheTool import ToucheTool
+from toucheTool import OCCToucheTool
 
-class TouchePlugin (GeneralPlugin):
+class OCCTouchePlugin (GeneralPlugin):
 	def settings(self):
 		self.name = u"2ché"
 
@@ -22,7 +22,7 @@ class TouchePlugin (GeneralPlugin):
 			mainMenu.itemWithTag_(5).submenu().addItem_(newMenuItem)
 
 	def showWindow(self, sender):
-		self.touche = ToucheTool()
+		self.touche = OCCToucheTool()
 
 	def __file__(self):
 		"""Please leave this method unchanged"""

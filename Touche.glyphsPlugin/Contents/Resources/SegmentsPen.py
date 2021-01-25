@@ -3,7 +3,7 @@
 from fontTools.pens.basePen import BasePen
 import traceback
 
-class SegmentsPen(BasePen):
+class OCCSegmentsPen(BasePen):
 
     def __init__(self, glyphSet):
         BasePen.__init__(self, glyphSet)

@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from Touche import Touche
+from Touche import OCCTouche
 from Foundation import NSUserDefaults
 from vanilla import CheckBox, Group, List, ProgressSpinner, Button, TextBox, Window
 from robofab.world import CurrentFont
@@ -8,7 +8,7 @@ from GlyphsApp import *
 from robofab.interface.all.dialogs import PutFile, Message
 import time
 
-class ToucheTool():
+class OCCToucheTool():
 
     def __init__(self):
         NSUserDefaults.standardUserDefaults().registerDefaults_({"ToucheWindowHeight":340})
@@ -241,7 +241,7 @@ class ToucheTool():
             glyphList = [f[x] for x in glyphNames]
             glyphList = self._trimGlyphList(glyphList)
 
-            self.touchingPairs = Touche(f).findTouchingPairs(glyphList)
+            self.touchingPairs = OCCTouche(f).findTouchingPairs(glyphList)
 
             # display output
             self.w.results.stats.set("%d glyphs checked" % len(glyphList))
@@ -258,7 +258,7 @@ class ToucheTool():
             self._resizeWindow(enlarge=True)
 
             time1 = time.time()
-            print u'Touché: finished checking %d glyphs in %.2f seconds' % (len(glyphList), time1-time0)
+            print u'2ché: finished checking %d glyphs in %.2f seconds' % (len(glyphList), time1-time0)
 
         else:
-            Message(u'Touché: Can’t find a font to check')
+            Message(u'2ché: Can’t find a font to check')

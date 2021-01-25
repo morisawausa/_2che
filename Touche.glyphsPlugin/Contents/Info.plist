@@ -19,7 +19,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright, Nina Stoessigner and Occupant Fonts, 2021</string>
 	<key>NSPrincipalClass</key>
-	<string>TouchePlugin</string>
+	<string>OCCTouchePlugin</string>
 	<key>PyMainFileNames</key>
 	<array>
 		<string>plugin.py</string>

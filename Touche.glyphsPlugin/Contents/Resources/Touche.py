@@ -23,12 +23,12 @@ def segmentInBound(segment, bounds):
             return True
     return False
 
-class Touche(object):
+class OCCTouche(object):
     """Checks a font for touching glyphs.
 
         font = CurrentFont()
         a, b = font['a'], font['b']
-        touche = Touche(font)
+        touche = OCCTouche(font)
         touche.checkPair(a, b)
         touche.findTouchingPairs([a, b])
 
@@ -87,7 +87,7 @@ class Touche(object):
         # create a pen for g1 with a shifted rect, draw the glyph into the pen
         pen1 = self.penCache.get(g1.name, None)
         if not pen1:
-            pen1 = SegmentsPen.SegmentsPen(self.font)
+            pen1 = SegmentsPen.OCCSegmentsPen(self.font)
             g1.draw(pen1)
             self.penCache[g1.name] = pen1
 
@@ -95,7 +95,7 @@ class Touche(object):
 
         pen2 = self.penCache.get(g2.name, None)
         if not pen2:
-            pen2 = SegmentsPen.SegmentsPen(self.font)
+            pen2 = SegmentsPen.OCCSegmentsPen(self.font)
             g2.draw(pen2)
             self.penCache[g2.name] = pen2
 
